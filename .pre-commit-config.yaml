@@ -1,58 +1,64 @@
+---
 repos:
+  - repo: "https://github.com/adrienverge/yamllint.git"
+    rev: "v1.35.1"
+    hooks:
+      - id: "yamllint"
   - repo: "https://github.com/asottile/pyupgrade"
-    rev: "v3.13.0"
+    rev: "v3.16.0"
     hooks:
-    - id: "pyupgrade"
-      args: ["--py38-plus"]
-  - repo: "https://github.com/ambv/black"
-    rev: "23.9.1"
+      - id: "pyupgrade"
+        args: ["--py38-plus"]
+  - repo: "https://github.com/psf/black"
+    rev: "24.4.2"
     hooks:
-    - id: "black"
-      language_version: "python3.9"
+      - id: "black"
+        language_version: "python3.9"
   - repo: "https://github.com/pycqa/flake8"
-    rev: "6.1.0"
+    rev: "7.1.0"
     hooks:
-    - id: "flake8"
-  - repo: "https://github.com/pre-commit/mirrors-mypy"
-    rev: 'v1.5.1'
+      - id: "flake8"
+  - repo: "https://github.com/pycqa/isort"
+    rev: "5.13.2"
     hooks:
-    - id: "mypy"
-      additional_dependencies: ["types-cryptography", "types-requests", "types-PyYAML"]
-      name: "mypy (client/certgrinder)"
-      args: ["--strict"]
-      files: ^client/
-    - id: "mypy"
-      additional_dependencies: ["types-cryptography", "types-requests", "types-PyYAML"]
-      name: "mypy (server/certgrinderd)"
-      args: ["--strict"]
-      files: ^server/
-  - repo: "https://github.com/pre-commit/mirrors-isort"
-    rev: "v5.10.1"
-    hooks:
-    - id: "isort"
+      - id: "isort"
   - repo: "https://github.com/pycqa/pydocstyle"
     rev: "6.3.0"
     hooks:
-    - id: "pydocstyle"
+      - id: "pydocstyle"
+  - repo: "https://github.com/pre-commit/mirrors-mypy"
+    rev: 'v1.10.0'
+    hooks:
+      - id: "mypy"
+        additional_dependencies: ["types-cryptography", "types-requests", "types-PyYAML"]
+        name: "mypy (client/certgrinder)"
+        args: ["--strict"]
+        files: ^client/
+      - id: "mypy"
+        additional_dependencies: ["types-cryptography", "types-requests", "types-PyYAML"]
+        name: "mypy (server/certgrinderd)"
+        args: ["--strict"]
+        files: ^server/
   - repo: "local"
     hooks:
       - id: "sphinx-build-manpages"
         name: "sphinx manpage build"
         entry: "make --directory docs/ man"
         language: "system"
-        pass_filenames: False
+        pass_filenames: false
       - id: "sphinx-copy-certgrinder-manpage"
         name: "sphinx certgrinder.8 manpage copy"
         entry: "cp docs/_build/man/certgrinder.8 client/man/"
         language: "system"
-        pass_filenames: False
+        pass_filenames: false
       - id: "sphinx-copy-certgrinderd-manpage"
         name: "sphinx certgrinderd.8 manpage copy"
         entry: "cp docs/_build/man/certgrinderd.8 server/man/"
         language: "system"
-        pass_filenames: False
+        pass_filenames: false
       - id: "sphinx-git-add-manpages"
         name: "sphinx manpage git add"
         entry: "git add client/man server/man"
         language: "system"
-        pass_filenames: False
+        pass_filenames: false
+...

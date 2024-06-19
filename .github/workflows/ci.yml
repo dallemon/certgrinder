@@ -1,11 +1,11 @@
 ---
 name: "Certgrinder CI Tests"
 
-on:
+on:  # yamllint disable-line rule:truthy
   push:
   pull_request:
   schedule:
-    - cron: '0 0 * * 0' # weekly
+    - cron: '0 0 * * 0'  # weekly
 
 jobs:
   build:
@@ -28,6 +28,6 @@ jobs:
       - name: "Upload coverage to Codecov"
         uses: "codecov/codecov-action@v2"
         with:
-         fail_ci_if_error: false
-         token: "${{secrets.CODECOV_TOKEN}}"
+          fail_ci_if_error: false
+          token: "${{ secrets.CODECOV_TOKEN }}"
 ...

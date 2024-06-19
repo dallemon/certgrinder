@@ -1,3 +1,4 @@
+---
 # .readthedocs.yml
 # Read the Docs configuration file
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
@@ -9,3 +10,4 @@ python:
    install:
       - requirements: client/requirements-dev.txt
       - requirements: server/requirements-dev.txt
+...
